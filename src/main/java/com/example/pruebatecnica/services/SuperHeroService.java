@@ -1,8 +1,8 @@
 package com.example.pruebatecnica.services;
 
-import java.util.List;
 import com.example.pruebatecnica.dtos.SuperHeroDto;
 import com.example.pruebatecnica.repositories.SuperHeroRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,5 +17,10 @@ public class SuperHeroService {
 	public List<SuperHeroDto> getAllSuperHeroes() {
 
 		return this.superHeroRepository.findAllSuperHeroes();
+	}
+
+	public SuperHeroDto getSuperHeroById(final int heroId) {
+
+		return this.superHeroRepository.findHeroById(heroId);
 	}
 }

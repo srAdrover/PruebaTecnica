@@ -30,4 +30,10 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 
 		return this.jdbcTemplate.query(query, rowMapper);
 	}
+
+	@Override
+	public SuperHeroDto findHeroById(int heroId) {
+
+		return null;
+	}
 }

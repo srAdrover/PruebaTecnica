@@ -5,4 +5,6 @@ import java.util.List;
 
 public interface SuperHeroRepository {
 	List<SuperHeroDto> findAllSuperHeroes();
+
+	SuperHeroDto findHeroById(final int heroId);
 }

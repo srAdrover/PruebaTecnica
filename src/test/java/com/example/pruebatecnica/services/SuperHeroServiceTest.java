@@ -40,4 +40,16 @@ class SuperHeroServiceTest {
 		assertNotEquals(noneExpectedHeroes, actualHeroes);
 	}
 
+	@Test
+	void getSuperHeroByIdTest() {
+
+		final SuperHeroDto expectedHeroOne = SuperHeroDto.builder().id(1).build();
+
+		when(superHeroRepository.findHeroById(1)).thenReturn(expectedHeroOne);
+
+		final SuperHeroDto actualHero = this.superHeroService.getSuperHeroById(1);
+
+		assertEquals(expectedHeroOne, actualHero);
+	}
+
 }
