@@ -32,7 +32,7 @@ class SuperHeroServiceTest {
 		final List<SuperHeroDto> expectedHeroes = List.of(heroOne, heroTwo);
 		final List<SuperHeroDto> noneExpectedHeroes = List.of(heroOne, heroThree);
 
-		when(superHeroRepository.findAllSuperHeroes()).thenReturn(expectedHeroes);
+		when(this.superHeroRepository.findAllSuperHeroes()).thenReturn(expectedHeroes);
 
 		final List<SuperHeroDto> actualHeroes = this.superHeroService.getAllSuperHeroes();
 
@@ -45,11 +45,29 @@ class SuperHeroServiceTest {
 
 		final SuperHeroDto expectedHeroOne = SuperHeroDto.builder().id(1).build();
 
-		when(superHeroRepository.findHeroById(1)).thenReturn(expectedHeroOne);
+		when(this.superHeroRepository.findHeroById(1)).thenReturn(expectedHeroOne);
 
 		final SuperHeroDto actualHero = this.superHeroService.getSuperHeroById(1);
 
 		assertEquals(expectedHeroOne, actualHero);
+	}
+
+	@Test
+	void getSuperHeroesByNameTest() {
+
+		final SuperHeroDto heroOne = SuperHeroDto.builder().id(1).superHeroName("Deku").build();
+		final SuperHeroDto heroTwo = SuperHeroDto.builder().id(2).superHeroName("DekuTwo").build();
+		final SuperHeroDto heroThree = SuperHeroDto.builder().id(3).superHeroName("AllMight").build();
+
+		final List<SuperHeroDto> superHeroes = List.of(heroOne, heroTwo, heroThree);
+
+		final List<SuperHeroDto> expectedHeroes = List.of(heroOne, heroTwo);
+
+		when(this.superHeroRepository.findSuperHeroesByyName("Deku")).thenReturn(superHeroes);
+
+		final List<SuperHeroDto> actualHeroes = this.superHeroService.getAllSuperHeroes();
+
+		assertEquals(expectedHeroes, actualHeroes);
 	}
 
 }

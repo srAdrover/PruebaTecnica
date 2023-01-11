@@ -23,4 +23,9 @@ public class SuperHeroService {
 
 		return this.superHeroRepository.findHeroById(heroID);
 	}
+
+	public List<SuperHeroDto> getSuperHeroesByName(final String superHeroName) {
+
+		return null;
+	}
 }
