@@ -7,8 +7,4 @@ public interface SuperHeroRepository {
 	List<SuperHeroDto> findAllSuperHeroes();
 
 	SuperHeroDto findHeroById(final int heroId);
-
-	List<SuperHeroDto> findSuperHeroesByyName(final String superHeroName);
-
-
 }

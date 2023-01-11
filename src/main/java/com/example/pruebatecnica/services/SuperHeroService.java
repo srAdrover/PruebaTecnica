@@ -1,8 +1,11 @@
 package com.example.pruebatecnica.services;
 
+import static java.util.stream.Collectors.*;
+
 import com.example.pruebatecnica.dtos.SuperHeroDto;
 import com.example.pruebatecnica.repositories.SuperHeroRepository;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +29,8 @@ public class SuperHeroService {
 
 	public List<SuperHeroDto> getSuperHeroesByName(final String superHeroName) {
 
-		return null;
+		return this.superHeroRepository.findAllSuperHeroes().stream()
+			.filter(superHero -> superHero.getSuperHeroName().toLowerCase().contains(superHeroName.toLowerCase()))
+			.collect(toList());
 	}
 }

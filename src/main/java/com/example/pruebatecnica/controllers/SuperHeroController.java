@@ -27,4 +27,9 @@ public class SuperHeroController {
 	public SuperHeroDto getSuperHeroById(@PathVariable final int heroID) {
 		return this.superHeroService.getSuperHeroById(heroID);
 	}
+
+	@GetMapping("/superHeroByName/{superHeroName}")
+	public List<SuperHeroDto> getSuperHeroesByName(@PathVariable final String superHeroName) {
+		return this.superHeroService.getSuperHeroesByName(superHeroName);
+	}
 }
