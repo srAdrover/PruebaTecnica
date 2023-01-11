@@ -63,7 +63,7 @@ class SuperHeroServiceTest {
 
 		final List<SuperHeroDto> expectedHeroes = List.of(heroOne, heroTwo);
 
-		when(this.superHeroRepository.findSuperHeroesByyName("Deku")).thenReturn(superHeroes);
+		when(this.superHeroRepository.findAllSuperHeroes()).thenReturn(superHeroes);
 
 		final List<SuperHeroDto> actualHeroes = this.superHeroService.getAllSuperHeroes();
 
