@@ -19,8 +19,8 @@ public class SuperHeroService {
 		return this.superHeroRepository.findAllSuperHeroes();
 	}
 
-	public SuperHeroDto getSuperHeroById(final int heroId) {
+	public SuperHeroDto getSuperHeroById(final int heroID) {
 
-		return this.superHeroRepository.findHeroById(heroId);
+		return this.superHeroRepository.findHeroById(heroID);
 	}
 }

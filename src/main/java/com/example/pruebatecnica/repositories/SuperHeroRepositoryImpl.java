@@ -15,16 +15,16 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	private final static RowMapper<SuperHeroDto> rowMapper = (sh, rowNum) -> SuperHeroDto.builder()
+		.id(sh.getInt("HeroID"))
+		.superHeroName(sh.getString("HeroName"))
+		.firstName(sh.getString("FirstName"))
+		.secondName(sh.getString("SecondName"))
+		.power(sh.getString("Power"))
+		.build();
+	
 	@Override
 	public List<SuperHeroDto> findAllSuperHeroes() {
-
-		final RowMapper<SuperHeroDto> rowMapper = (sh, rowNum) -> SuperHeroDto.builder()
-				.id(sh.getInt("HeroID"))
-				.superHeroName(sh.getString("HeroName"))
-				.firstName(sh.getString("FirstName"))
-				.secondName(sh.getString("SecondName"))
-				.power(sh.getString("Power"))
-				.build();
 
 		final String query = "SELECT * FROM SuperHeroes";
 
@@ -32,8 +32,10 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 	}
 
 	@Override
-	public SuperHeroDto findHeroById(int heroId) {
+	public SuperHeroDto findHeroById(final int heroID) {
 
-		return null;
+		final String query = "SELECT * FROM SuperHeroes WHERE heroID = ?";
+
+		return this.jdbcTemplate.queryForObject(query, rowMapper, heroID);
 	}
 }
