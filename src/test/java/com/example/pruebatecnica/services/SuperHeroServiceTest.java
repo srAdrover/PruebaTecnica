@@ -65,7 +65,7 @@ class SuperHeroServiceTest {
 
 		when(this.superHeroRepository.findAllSuperHeroes()).thenReturn(superHeroes);
 
-		final List<SuperHeroDto> actualHeroes = this.superHeroService.getAllSuperHeroes();
+		final List<SuperHeroDto> actualHeroes = this.superHeroService.getSuperHeroesByName("deKU");
 
 		assertEquals(expectedHeroes, actualHeroes);
 	}
