@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SuperHeroService {
 
+	// todo: focus exceptions
+
 	private final SuperHeroRepository superHeroRepository;
 
 	public SuperHeroService(final SuperHeroRepository superHeroRepository) {
@@ -32,5 +34,10 @@ public class SuperHeroService {
 		return this.superHeroRepository.findAllSuperHeroes().stream()
 			.filter(superHero -> superHero.getSuperHeroName().toLowerCase().contains(superHeroName.toLowerCase()))
 			.collect(toList());
+	}
+
+	public void updateSuperHero(final SuperHeroDto superHero) {
+
+		this.superHeroRepository.updateSuperHero(superHero);
 	}
 }

@@ -38,4 +38,9 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 
 		return this.jdbcTemplate.queryForObject(query, rowMapper, heroID);
 	}
+
+	@Override
+	public void updateSuperHero(SuperHeroDto superHero) {
+
+	}
 }

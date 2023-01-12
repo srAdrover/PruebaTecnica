@@ -7,4 +7,6 @@ public interface SuperHeroRepository {
 	List<SuperHeroDto> findAllSuperHeroes();
 
 	SuperHeroDto findHeroById(final int heroId);
+
+	void updateSuperHero(final SuperHeroDto superHero);
 }

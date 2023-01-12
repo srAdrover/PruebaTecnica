@@ -2,6 +2,8 @@ package com.example.pruebatecnica.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.example.pruebatecnica.dtos.SuperHeroDto;
@@ -68,6 +70,16 @@ class SuperHeroServiceTest {
 		final List<SuperHeroDto> actualHeroes = this.superHeroService.getSuperHeroesByName("deKU");
 
 		assertEquals(expectedHeroes, actualHeroes);
+	}
+
+	@Test
+	void updateSuperHeroByIdTest() {
+
+		final SuperHeroDto superHeroToUpdate = SuperHeroDto.builder().id(1).build();
+
+		this.superHeroService.updateSuperHero(superHeroToUpdate);
+
+		verify(superHeroRepository).updateSuperHero(superHeroToUpdate);
 	}
 
 }
