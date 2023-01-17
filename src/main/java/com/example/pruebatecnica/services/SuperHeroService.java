@@ -48,6 +48,9 @@ public class SuperHeroService {
 	}
 
 	public String deleteSuperHero(final int heroID) {
-		return "";
+
+		final int rowsDeleted = this.superHeroRepository.deleteSuperHero(heroID);
+
+		return "You have deleted " + rowsDeleted + " rows";
 	}
 }

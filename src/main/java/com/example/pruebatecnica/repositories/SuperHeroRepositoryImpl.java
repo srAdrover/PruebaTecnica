@@ -85,8 +85,10 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 	}
 
 	@Override
-	public int deleteSuperHero(int heroID) {
+	public int deleteSuperHero(final int heroID) {
 
-		return 0;
+		final String query = "DELETE FROM SuperHeroes WHERE HeroId = ?";
+
+		return this.jdbcTemplate.update(query, heroID);
 	}
 }

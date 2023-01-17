@@ -3,6 +3,7 @@ package com.example.pruebatecnica.controllers;
 import com.example.pruebatecnica.dtos.SuperHeroDto;
 import com.example.pruebatecnica.services.SuperHeroService;
 import java.util.List;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +44,11 @@ public class SuperHeroController {
 	public String updateSuperHero(@RequestBody final SuperHeroDto superHero) {
 
 		return this.superHeroService.updateSuperHero(superHero);
+	}
+
+	@DeleteMapping("/deleteSuperHero/{heroID}")
+	public String deleteSuperHero(@PathVariable final int heroID) {
+
+		return this.superHeroService.deleteSuperHero(heroID);
 	}
 }
