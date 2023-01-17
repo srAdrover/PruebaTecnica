@@ -1,6 +1,6 @@
 package com.example.pruebatecnica.repositories;
 
-import static java.util.Objects.*;
+import static java.util.Objects.nonNull;
 
 import com.example.pruebatecnica.dtos.SuperHeroDto;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	public SuperHeroRepositoryImpl(final JdbcTemplate jdbcTemplate, final NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+
 		this.jdbcTemplate = jdbcTemplate;
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
@@ -29,7 +30,7 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 		.secondName(sh.getString("SecondName"))
 		.power(sh.getString("Power"))
 		.build();
-	
+
 	@Override
 	public List<SuperHeroDto> findAllSuperHeroes() {
 
@@ -48,29 +49,29 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 
 	@Override
 	public int updateSuperHero(final int heroID,
-								final String heroName,
-								final String firstName,
-								final String secondName,
-								final String power) {
+							   final String heroName,
+							   final String firstName,
+							   final String secondName,
+							   final String power) {
 
 		final MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		final List<String> fieldsToUpdate = new ArrayList<>();
 
 		parameterSource.addValue("heroId", heroID);
 
-		if(nonNull(heroName)) {
+		if (nonNull(heroName)) {
 			fieldsToUpdate.add("HeroName = :heroName");
 			parameterSource.addValue("heroName", heroName);
 		}
-		if(nonNull(firstName)) {
+		if (nonNull(firstName)) {
 			fieldsToUpdate.add("FirstName = :firstName");
 			parameterSource.addValue("heroName", heroName);
 		}
-		if(nonNull(secondName)) {
+		if (nonNull(secondName)) {
 			fieldsToUpdate.add("SecondName = :secondName");
 			parameterSource.addValue("SecondName", secondName);
 		}
-		if(nonNull(power)) {
+		if (nonNull(power)) {
 			fieldsToUpdate.add("Power = :power");
 			parameterSource.addValue("Power", power);
 		}

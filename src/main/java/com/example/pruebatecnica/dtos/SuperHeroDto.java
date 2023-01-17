@@ -8,6 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class SuperHeroDto {
+
 	final int id;
 	final String superHeroName;
 	final String firstName;

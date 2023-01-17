@@ -17,26 +17,31 @@ public class SuperHeroController {
 	private final SuperHeroService superHeroService;
 
 	public SuperHeroController(final SuperHeroService superHeroService) {
+
 		this.superHeroService = superHeroService;
 	}
 
 	@GetMapping("/allSuperHeroes")
 	public List<SuperHeroDto> getAllSuperHeroes() {
+
 		return this.superHeroService.getAllSuperHeroes();
 	}
 
 	@GetMapping("/superHero/{heroID}")
 	public SuperHeroDto getSuperHeroById(@PathVariable final int heroID) {
+
 		return this.superHeroService.getSuperHeroById(heroID);
 	}
 
 	@GetMapping("/superHeroByName/{superHeroName}")
 	public List<SuperHeroDto> getSuperHeroesByName(@PathVariable final String superHeroName) {
+
 		return this.superHeroService.getSuperHeroesByName(superHeroName);
 	}
 
 	@PostMapping("/updateSuperHero")
 	public String updateSuperHero(@RequestBody final SuperHeroDto superHero) {
+
 		return this.superHeroService.updateSuperHero(superHero);
 	}
 }
