@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.when;
 
 import com.example.pruebatecnica.dtos.SuperHeroDto;
+import com.example.pruebatecnica.exceptions.InternalException;
 import com.example.pruebatecnica.repositories.SuperHeroRepository;
 import java.util.List;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class SuperHeroServiceTest {
 	private SuperHeroService superHeroService;
 
 	@Test
-	void getAllSuperHeroesTest() {
+	void getAllSuperHeroesTest() throws InternalException {
 
 		final SuperHeroDto heroOne = SuperHeroDto.builder().id(1).build();
 		final SuperHeroDto heroTwo = SuperHeroDto.builder().id(2).build();
@@ -41,7 +42,7 @@ class SuperHeroServiceTest {
 	}
 
 	@Test
-	void getSuperHeroByIdTest() {
+	void getSuperHeroByIdTest() throws InternalException {
 
 		final SuperHeroDto expectedHeroOne = SuperHeroDto.builder().id(1).build();
 
@@ -53,7 +54,7 @@ class SuperHeroServiceTest {
 	}
 
 	@Test
-	void getSuperHeroesByNameTest() {
+	void getSuperHeroesByNameTest() throws InternalException {
 
 		final SuperHeroDto heroOne = SuperHeroDto.builder().id(1).superHeroName("Deku").build();
 		final SuperHeroDto heroTwo = SuperHeroDto.builder().id(2).superHeroName("DekuTwo").build();
@@ -71,7 +72,7 @@ class SuperHeroServiceTest {
 	}
 
 	@Test
-	void updateSuperHeroByIdTest() {
+	void updateSuperHeroByIdTest() throws InternalException {
 
 		final SuperHeroDto superHeroToUpdate = SuperHeroDto.builder()
 			.id(1)
@@ -94,7 +95,7 @@ class SuperHeroServiceTest {
 	}
 
 	@Test
-	void deleteSuperHeroTest() {
+	void deleteSuperHeroTest() throws InternalException {
 
 		when(this.superHeroRepository.deleteSuperHero(1)).thenReturn(1);
 
