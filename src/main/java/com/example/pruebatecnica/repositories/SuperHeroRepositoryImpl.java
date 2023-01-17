@@ -83,4 +83,10 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 		}
 		return 0;
 	}
+
+	@Override
+	public int deleteSuperHero(int heroID) {
+
+		return 0;
+	}
 }

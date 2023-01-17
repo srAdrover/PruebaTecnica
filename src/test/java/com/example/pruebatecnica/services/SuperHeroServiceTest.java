@@ -93,4 +93,16 @@ class SuperHeroServiceTest {
 		assertEquals(expected, actual);
 	}
 
+	@Test
+	void deleteSuperHeroTest() {
+
+		when(this.superHeroRepository.deleteSuperHero(1)).thenReturn(1);
+
+		final String actual = this.superHeroService.deleteSuperHero(1);
+
+		final String expected = "You have deleted 1 rows";
+
+		assertEquals(expected, actual);
+	}
+
 }

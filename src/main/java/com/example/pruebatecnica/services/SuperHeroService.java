@@ -46,4 +46,8 @@ public class SuperHeroService {
 
 		return "You have updated " + rowsModified + " rows";
 	}
+
+	public String deleteSuperHero(final int heroID) {
+		return "";
+	}
 }

@@ -14,4 +14,6 @@ public interface SuperHeroRepository {
 						final String firstName,
 						final String secondName,
 						final String power);
+
+	int deleteSuperHero(final int heroID);
 }
