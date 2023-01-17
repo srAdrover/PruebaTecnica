@@ -6,7 +6,11 @@ import java.util.List;
 public interface SuperHeroRepository {
 	List<SuperHeroDto> findAllSuperHeroes();
 
-	SuperHeroDto findHeroById(final int heroId);
+	SuperHeroDto findHeroById(final int heroID);
 
-	void updateSuperHero(final SuperHeroDto superHero);
+	int updateSuperHero(final int heroID,
+						 final String heroName,
+						 final String firstName,
+						 final String secondName,
+						 final String power);
 }

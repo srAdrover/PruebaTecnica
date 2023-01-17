@@ -1,11 +1,10 @@
 package com.example.pruebatecnica.services;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toList;
 
 import com.example.pruebatecnica.dtos.SuperHeroDto;
 import com.example.pruebatecnica.repositories.SuperHeroRepository;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +15,7 @@ public class SuperHeroService {
 	private final SuperHeroRepository superHeroRepository;
 
 	public SuperHeroService(final SuperHeroRepository superHeroRepository) {
+
 		this.superHeroRepository = superHeroRepository;
 	}
 
@@ -36,8 +36,14 @@ public class SuperHeroService {
 			.collect(toList());
 	}
 
-	public void updateSuperHero(final SuperHeroDto superHero) {
+	public String updateSuperHero(final SuperHeroDto superHero) {
 
-		this.superHeroRepository.updateSuperHero(superHero);
+		final int rowsModified = this.superHeroRepository.updateSuperHero(superHero.getId(),
+																		  superHero.getSuperHeroName(),
+																		  superHero.getFirstName(),
+																		  superHero.getSecondName(),
+																		  superHero.getPower());
+
+		return "You have updated " + rowsModified + " rows";
 	}
 }

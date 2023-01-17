@@ -5,6 +5,8 @@ import com.example.pruebatecnica.services.SuperHeroService;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,5 +33,10 @@ public class SuperHeroController {
 	@GetMapping("/superHeroByName/{superHeroName}")
 	public List<SuperHeroDto> getSuperHeroesByName(@PathVariable final String superHeroName) {
 		return this.superHeroService.getSuperHeroesByName(superHeroName);
+	}
+
+	@PostMapping("/updateSuperHero")
+	public String updateSuperHero(@RequestBody final SuperHeroDto superHero) {
+		return this.superHeroService.updateSuperHero(superHero);
 	}
 }
