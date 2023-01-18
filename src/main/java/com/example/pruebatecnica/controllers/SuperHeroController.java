@@ -52,4 +52,9 @@ public class SuperHeroController {
 
 		return this.superHeroService.deleteSuperHero(heroID);
 	}
+
+	@GetMapping("/clearCache")
+	public void clearCache(){
+		this.superHeroService.clearCache();
+	}
 }

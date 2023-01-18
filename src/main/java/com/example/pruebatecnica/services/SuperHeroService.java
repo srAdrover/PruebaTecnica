@@ -5,12 +5,18 @@ import static com.example.pruebatecnica.exceptions.ErrorMessage.GET_ALL_HEROES;
 import static com.example.pruebatecnica.exceptions.ErrorMessage.GET_HEROES_BY_NAMES;
 import static com.example.pruebatecnica.exceptions.ErrorMessage.GET_HERO_BY_ID;
 import static com.example.pruebatecnica.exceptions.ErrorMessage.UPDATE_HERO;
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
 import com.example.pruebatecnica.dtos.SuperHeroDto;
 import com.example.pruebatecnica.exceptions.InternalException;
 import com.example.pruebatecnica.repositories.SuperHeroRepository;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -19,12 +25,15 @@ import org.springframework.stereotype.Service;
 public class SuperHeroService {
 
 	private final SuperHeroRepository superHeroRepository;
+	private final CacheManager cacheManager;
 
-	public SuperHeroService(final SuperHeroRepository superHeroRepository) {
+	public SuperHeroService(final SuperHeroRepository superHeroRepository, final CacheManager cacheManager) {
 
 		this.superHeroRepository = superHeroRepository;
+		this.cacheManager = cacheManager;
 	}
 
+	@Cacheable(value = "heroes")
 	public List<SuperHeroDto> getAllSuperHeroes() throws InternalException {
 
 		try {
@@ -42,7 +51,7 @@ public class SuperHeroService {
 		try {
 			return this.superHeroRepository.findHeroById(heroID);
 		} catch (final EmptyResultDataAccessException dataAccessException) {
-			return SuperHeroDto.builder().build();
+			return null;
 		} catch (final DataAccessException dataAccessException) {
 			throw InternalException.builder()
 				.errorMessage(GET_HERO_BY_ID)
@@ -94,5 +103,9 @@ public class SuperHeroService {
 				.exception(dataAccessException)
 				.build();
 		}
+	}
+
+	public void clearCache() {
+		requireNonNull(this.cacheManager.getCache("heroes")).clear();;
 	}
 }
