@@ -69,11 +69,11 @@ public class SuperHeroRepositoryImpl implements SuperHeroRepository {
 		}
 		if (nonNull(secondName)) {
 			fieldsToUpdate.add("SecondName = :secondName");
-			parameterSource.addValue("SecondName", secondName);
+			parameterSource.addValue("secondName", secondName);
 		}
 		if (nonNull(power)) {
 			fieldsToUpdate.add("Power = :power");
-			parameterSource.addValue("Power", power);
+			parameterSource.addValue("power", power);
 		}
 
 		if (!fieldsToUpdate.isEmpty()) {
